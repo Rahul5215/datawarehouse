@@ -1,10 +1,3 @@
-
-select *from gold.fact_sales
-
-select *from gold.dim_customers
-
-select *from gold.dim_products
-
 ------------------------------------------
 --Average Order Value (AOV)
 ------------------------------------------
@@ -358,15 +351,6 @@ concat((product_total_sales * 100 / (select sum(sales_amount) from gold.fact_sal
 from cte
 
 
-
-with yearly_customers as(
-select
-extract(year from order_date) as year,
-customer_key
-from gold.fact_sales
-group by year, customer_key
-order by year
-)
 
 
 
