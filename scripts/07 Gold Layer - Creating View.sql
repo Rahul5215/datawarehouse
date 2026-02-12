@@ -1,27 +1,6 @@
-
-select
-distinct
-c1.cst_gndr,
-c2.gen,
-case when c1.cst_gndr != 'n/a' then c1.cst_gndr
-     else coalesce(c2.gen,'n/a')
-	 end as nwe_gen
-from silver.crm_cust_info c1
-left join silver.erp_cust_az12 c2
-on c1.cst_key = c2.cid
-
-
-select distinct gen from silver.erp_cust_az12
-
-select *from silver.crm_cust_info where cst_key = 'A01Ass'
-
-
-
---create view table:
-
-select *from silver.crm_prd_info
-select *from silver.erp_px_cat_g1v2
-
+---------------------------------------------------------------
+--Create View Table: gold.dim_customers
+---------------------------------------------------------------
 create view gold.dim_customers as
 select
 row_number() over(order by cst_key) as customer_key,
@@ -42,10 +21,11 @@ on c1.cst_key = c2.cid
 left join silver.erp_loc_a101 c3
 on c1.cst_key = c3.cid
 
-select *from gold.dim_customers
+	
 
-
---create view table:
+---------------------------------------------------------------
+--Create View Table: gold.dim_products
+---------------------------------------------------------------
 drop view gold.dim_products;
 create view gold.dim_products as
 select
@@ -66,7 +46,9 @@ left join silver.erp_px_cat_g1v2 p2
 on p1.cat_id = p2.id
 
 
---create a view table:
+---------------------------------------------------------------
+--Create View Table: gold.fact_sales
+---------------------------------------------------------------
 drop view gold.fact_sales;
 create view gold.fact_sales as
 select
@@ -84,36 +66,3 @@ left join gold.dim_products p
 on s.sls_prd_key = p.product_number
 left join gold.dim_customers c
 on s.sls_cust_id = c.customer_id
-
-
-select *from gold.dim_products
-select *from gold.dim_customers
-select *from gold.fact_sales 
-select *from silver.crm_sales_details
-
---Foreign key integrity
-select
-*
-from gold.fact_sales s
-left join gold.dim_customers c
-on s.customer_key = c.customer_key
-where c.customer_key is null
-
-select
-*
-from gold.fact_sales s
-left join gold.dim_products p
-on s.product_key = p.product_key
-where p.product_key is null
-
-
-select
-*
-from gold.dim_customers
-where customer_id is null
-
-
-select
-*
-from silver.crm_cust_info
-where cst_id is null 
