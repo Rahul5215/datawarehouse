@@ -20,7 +20,7 @@ The warehouse is structured into three layers:
 
 - No transformations applied
 
--= Ensures traceability and auditability
+- Ensures traceability and auditability
 
 🥈 Silver Layer – Cleansing & Standardization
 
