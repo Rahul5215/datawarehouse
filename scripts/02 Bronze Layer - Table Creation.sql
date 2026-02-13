@@ -1,3 +1,29 @@
+/*
+Here’s a professional GitHub explanation paragraph for this Bronze table creation script 👇
+
+🥉 Bronze Layer – Source System Table Structures
+
+This script defines the raw staging tables for multiple source systems within the Bronze layer of the data warehouse. The tables are structured to closely mirror the original CRM and ERP source data without applying any transformations or business rules.
+
+==> CRM Source Tables :-
+
+> crm_cust_info – Customer master information including demographic and status attributes
+
+> crm_prd_info – Product reference data with lifecycle dates
+
+> crm_sales_details – Transactional sales records including order, shipping, pricing, and quantity details
+
+==> ERP Source Tables :-
+
+> erp_loc_a101 – Customer location mapping data
+
+> erp_cust_az12 – Additional customer demographic details
+
+> erp_px_cat_g1v2 – Product category and maintenance classification data
+
+Each table is created using a DROP TABLE IF EXISTS pattern to allow repeatable execution during development. The Bronze layer preserves source data in its original structure, ensuring traceability and serving as the foundation for downstream cleansing and transformation in the Silver layer.
+*/
+
 DROP TABLE IF EXISTS bronze.crm_cust_info;
 CREATE TABLE bronze.crm_cust_info(
 cst_id INT,
@@ -55,4 +81,5 @@ cat VARCHAR(50),
 subcat VARCHAR(50),
 maintenance VARCHAR(50)
 );
+
 
