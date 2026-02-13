@@ -1,3 +1,21 @@
+/*
+🥇 Gold Layer – Analytical Star Schema (View-Based)
+
+The Gold layer implements a star schema analytical model using view-based transformations. It integrates CRM and ERP data sources to construct unified dimension and fact views.
+
+>> Dimension Views:
+
+> dim_customers – Consolidates customer master data, demographic attributes, and geographic information across systems.
+
+> dim_products – Combines product master data with ERP category classifications and lifecycle attributes.
+
+>> Fact View:
+
+> fact_sales – Transaction-level sales data enriched with surrogate dimension keys for analytical reporting.
+
+The model introduces surrogate keys using window functions and establishes clean fact-to-dimension relationships. This design supports business analytics use cases such as revenue analysis, product performance tracking, and customer segmentation.
+*/
+
 ---------------------------------------------------------------
 --Create View Table: gold.dim_customers
 ---------------------------------------------------------------
@@ -66,3 +84,4 @@ left join gold.dim_products p
 on s.sls_prd_key = p.product_number
 left join gold.dim_customers c
 on s.sls_cust_id = c.customer_id
+
