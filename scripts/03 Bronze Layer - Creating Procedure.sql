@@ -1,3 +1,42 @@
+/*
+Here is a clean and professional GitHub explanation paragraph for this procedure 👇
+
+🥉 Bronze Layer Load Procedure – CRM & ERP Sources
+
+The bronze_load_bronze() procedure orchestrates the ingestion of raw data from multiple source systems (CRM and ERP) into the Bronze layer of the data warehouse. It performs a full-refresh load strategy using TRUNCATE + COPY for each staging table, ensuring consistent and repeatable data ingestion.
+
+Source Systems Covered:
+
+> CRM :
+
+- crm_cust_info – Customer master data
+
+- crm_prd_info – Product reference data
+
+- crm_sales_details – Transactional sales records
+
+> ERP :
+
+- erp_cust_az12 – Customer demographic attributes
+
+- erp_loc_a101 – Customer location mapping
+
+- erp_px_cat_g1v2 – Product category classification
+
+Key Features:
+
+- Full-refresh ingestion for deterministic loads
+
+- Bulk data loading using PostgreSQL COPY for performance
+
+- Table-level execution time tracking
+
+- Total batch load duration calculation
+
+- Structured error diagnostics using GET STACKED DIAGNOSTICS
+
+The Bronze layer preserves raw source data without transformation, maintaining traceability and serving as the foundation for downstream cleansing and modeling in the Silver and Gold layers.
+*/
 
 CREATE OR REPLACE PROCEDURE bronze_load_bronze()
 LANGUAGE plpgsql
@@ -164,5 +203,6 @@ END
 $$;
 
 CALL bronze_load_bronze()
+
 
 
