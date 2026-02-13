@@ -1,3 +1,39 @@
+/*
+🥈 Silver Layer – Cleaned & Standardized Schema Structures
+
+This script defines the structured transformation layer for CRM and ERP source systems within the Silver layer of the data warehouse. Unlike the Bronze layer, these tables enforce proper data types, standardized schemas, and include warehouse-level metadata columns for auditing.
+
+Key Enhancements from Bronze → Silver:
+
+• Conversion of raw date fields into proper DATE data types
+
+• Standardized naming conventions and schema alignment
+
+• Structured column definitions for analytical consistency
+
+• Introduction of dwh_create_date for warehouse audit tracking
+
+Silver Tables Created:
+
+> CRM
+
+- crm_cust_info – Cleaned customer master data
+
+- crm_prd_info – Standardized product reference data
+
+- crm_sales_details – Structured transactional sales data
+
+> ERP
+
+- erp_loc_a101 – Customer location reference
+
+- erp_cust_az12 – Customer demographic attributes
+
+- erp_px_cat_g1v2 – Product category classification
+
+The Silver layer acts as the refined transformation stage between raw ingestion (Bronze) and business-facing analytics (Gold). It ensures that downstream fact and dimension modeling operates on consistent, validated, and properly typed datasets while maintaining lineage through warehouse audit fields.
+*/
+
 DROP TABLE IF EXISTS silver.crm_cust_info;
 CREATE TABLE silver.crm_cust_info(
 cst_id INT,
@@ -60,4 +96,5 @@ subcat VARCHAR(50),
 maintenance VARCHAR(50),
 dwh_create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
