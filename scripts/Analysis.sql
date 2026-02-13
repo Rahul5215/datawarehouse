@@ -1,3 +1,31 @@
+/*
+📊 Advanced Sales & Customer Analytics (Gold Layer Analysis)
+
+This section contains advanced analytical queries built on top of the Gold star schema to derive business KPIs and performance insights. The analysis covers financial metrics, growth trends, customer behavior, product performance, and profitability using fact–dimension joins.
+
+Key insights generated include:
+
+> Average Order Value (AOV)
+
+> Year-over-Year (YoY) and Month-over-Month (MoM) growth
+
+> Top-performing products by revenue and quantity
+
+> Category and subcategory sales distribution
+
+> Profit, profit margin, and country-wise performance
+
+> Customer retention rate
+
+> Customer Lifetime Value (CLV)
+
+> Repeat purchase rate
+
+> Revenue contribution of top products
+
+> Age-group-based sales segmentation
+*/
+
 ------------------------------------------
 --Average Order Value (AOV)
 ------------------------------------------
@@ -86,8 +114,7 @@ select
 case when previous_month_sales is null or previous_month_sales = 0
      then null
 	 else concat((total_sales - previous_month_sales)*100 / previous_month_sales,'%') 
-	 end as MoM_growth,
-sum(previous_month_sales) over(order by years, months) as running_total
+	 end as MoM_growth
 from cte2
 
 ------------------------------------------
@@ -349,6 +376,7 @@ select
 *,
 concat((product_total_sales * 100 / (select sum(sales_amount) from gold.fact_sales)),'%') as contribution
 from cte
+
 
 
 
