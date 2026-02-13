@@ -14,25 +14,25 @@ The warehouse is structured into three layers:
 
 🥉 Bronze Layer – Raw Ingestion
 
-• Stores source data exactly as received
+- Stores source data exactly as received
 
-• CRM and ERP systems loaded via COPY
+- CRM and ERP systems loaded via COPY
 
-• No transformations applied
+- No transformations applied
 
-• Ensures traceability and auditability
+-= Ensures traceability and auditability
 
 🥈 Silver Layer – Cleansing & Standardization
 
-• Data type enforcement
+- Data type enforcement
 
-• Deduplication using window functions
+- Deduplication using window functions
 
-• Null handling and domain standardization
+- Null handling and domain standardization
 
-• Multi-source integration (CRM + ERP)
+- Multi-source integration (CRM + ERP)
 
-• Audit columns added (dwh_create_date)
+- Audit columns added (dwh_create_date)
 
 🥇 Gold Layer – Analytical Star Schema
 
@@ -124,4 +124,4 @@ The project includes advanced SQL analytics built on the Gold layer:
 
 - Repeat Purchase Rate
 
-Age-group-based segmentation
+- Age-group-based segmentation
