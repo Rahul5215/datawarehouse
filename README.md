@@ -1,4 +1,5 @@
 🏗 End-to-End Data Warehouse Project (PostgreSQL)
+
 📌 Project Overview
 
 This project demonstrates the design and implementation of a complete layered data warehouse using PostgreSQL, following the Medallion Architecture (Bronze → Silver → Gold) pattern.
